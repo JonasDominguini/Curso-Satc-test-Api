@@ -1,5 +1,6 @@
 import pactum from 'pactum';
 import { SimpleReporter } from '../simple-reporter';
+import { faker } from '@faker-js/faker' 
 
 describe('ServeRest API', () => {
   let token = '';
@@ -16,8 +17,8 @@ describe('ServeRest API', () => {
         .spec()
         .post(`${baseUrl}/login`)
         .withJson({
-          email: 'a@b.com.br',
-          password: 'admin.1234'
+          email: 'fulano@qa.com',
+          password: 'teste'
         })
         .expectStatus(200)
         .returns('authorization');
@@ -33,4 +34,24 @@ describe('ServeRest API', () => {
         .expectStatus(200);
     });
   });
+
+  describe('Produtos', () => {
+    it('GET ALL', async () => {
+      await p
+        .spec()
+        .get(`${baseUrl}produtos`)
+        .withHeaders('Authorization', token)
+        .withJson({
+          nome: 'Notebook Acer',
+          preco: 10000,
+          descricao: 'Notebook',
+          quantidade: 1
+        })
+        .expectStatus(200)
+        .expectBodyContains('Cadastro realizado com sucesso');
+    });
+
+    it('GET produtos')
+  });
+  
 });

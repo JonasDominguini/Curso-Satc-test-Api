@@ -19,7 +19,7 @@ describe('Rick and Morty API', () => {
     });
 
     it('GET Rick response time', async () => {
-      await p.spec().get(`${baseUrl}/character/1`).expectResponseTime(300);
+      await p.spec().get(`${baseUrl}/character/1`).expectResponseTime(200);
     });
 
     it('GET xxx', async () => {
